@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>爬虫配置中心</title>
+    <link rel="stylesheet" href="/frontend/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>爬虫配置中心</h1>
+      <p>管理后台可快速配置、查看和维护各类爬虫任务。</p>
+    </header>
+
+    <main>
+      <section class="form-section">
+        <h2 id="form-title">新增爬虫</h2>
+        <form id="crawler-form">
+          <input type="hidden" id="crawler-id" />
+          <div class="form-grid">
+            <label>名称
+              <input type="text" id="name" required maxlength="100" placeholder="例如：新闻站点抓取" />
+            </label>
+            <label>目标地址
+              <input type="url" id="target_url" required placeholder="https://example.com" />
+            </label>
+            <label>调度规则
+              <input type="text" id="schedule" maxlength="100" placeholder="例如：0 0 * * *" />
+            </label>
+            <label class="checkbox">
+              <input type="checkbox" id="enabled" checked /> 启用
+            </label>
+          </div>
+          <label>备注
+            <textarea id="notes" rows="3" placeholder="补充任务说明或抓取策略"></textarea>
+          </label>
+          <div class="form-actions">
+            <button type="submit" class="primary">保存</button>
+            <button type="button" id="reset-btn">重置</button>
+          </div>
+        </form>
+      </section>
+
+      <section>
+        <div class="section-header">
+          <h2>爬虫列表</h2>
+          <button id="refresh-btn">刷新</button>
+        </div>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>目标地址</th>
+                <th>调度</th>
+                <th>状态</th>
+                <th>最近执行</th>
+                <th>备注</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="crawler-table-body">
+              <tr>
+                <td colspan="7" class="empty">暂无数据</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <template id="row-template">
+      <tr>
+        <td class="crawler-name"></td>
+        <td class="crawler-url"></td>
+        <td class="crawler-schedule"></td>
+        <td class="crawler-status"></td>
+        <td class="crawler-last-run"></td>
+        <td class="crawler-notes"></td>
+        <td class="actions">
+          <button class="ghost run">执行</button>
+          <button class="ghost edit">编辑</button>
+          <button class="danger delete">删除</button>
+        </td>
+      </tr>
+    </template>
+
+    <div id="toast" role="status"></div>
+
+    <script src="/frontend/app.js"></script>
+  </body>
+</html>

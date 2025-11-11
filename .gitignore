@@ -1,8 +1,9 @@
 __pycache__/
 *.py[cod]
-*.egg-info/
-.eggs/
+*.sqlite3
+*.db
 .env
-.venv
-venv/
-ENV/
+.venv/
+.pytest_cache/
+.frontend_cache/
+.DS_Store
